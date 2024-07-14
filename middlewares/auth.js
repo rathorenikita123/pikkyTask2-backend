@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 const { secret } = require("../config");
 
 exports.authenticate = (req, res, next) => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjkzYTQ2MDhhMjMyYjA2NzJmYTNhMDQiLCJpYXQiOjE3MjA5NTI4NjcsImV4cCI6MTcyMDk1NjQ2N30.x0bTLQNc0eVjTPS6RvL1LaRXnBkVOPZW2UpoLK0ceQw";
+  const token = req.header("Authorization")?.split(" ")[1];
   if (!token) {
     return res
       .status(401)
